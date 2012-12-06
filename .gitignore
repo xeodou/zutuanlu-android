@@ -1,7 +1,4 @@
 bin
 *.dex
 *.class
-
-gen/com/zutuanlu/R.java
-
-gen/com/zutuanlu/BuildConfig.java
+gen
