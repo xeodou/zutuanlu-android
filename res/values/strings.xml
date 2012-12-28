@@ -3,8 +3,8 @@
 
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">组团撸</string>
-    <string name="special">你读的什么专业？</string>
-    <string name="teachername">你的辅导员叫什么？</string>
+    <string name="special">用户名</string>
+    <string name="teachername">密码</string>
     <string name="matename">学号排第一的人名？</string>
     <string name="commit">提交</string>
     <string name="error_msg">错误信息:</string>

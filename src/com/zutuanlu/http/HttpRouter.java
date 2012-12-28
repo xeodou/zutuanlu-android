@@ -53,7 +53,6 @@ public class HttpRouter {
 	private static String csrf;
 	
 	public static boolean login(User user){
-		getCookieStore();
 		BasicHttpContext mHttpContext = new BasicHttpContext();
 		CookieStore mCookieStore = EnumUtils.cookieStore;
 		mHttpContext.setAttribute(ClientContext.COOKIE_STORE, mCookieStore);
@@ -64,7 +63,7 @@ public class HttpRouter {
 //			String[] array = {user.special, user.tName, user.mName};
 			nameValuePairs.add(new BasicNameValuePair("name", user.special));
 			nameValuePairs.add(new BasicNameValuePair("pass", user.tName));
-			nameValuePairs.add(new BasicNameValuePair("_csrf", csrf));
+			nameValuePairs.add(new BasicNameValuePair("_csrf", getCookieStore().getMsg()));
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
 			HttpResponse response = HttpManager.execute(post, mHttpContext);
 			if(response.getStatusLine().getStatusCode() == 200){
@@ -177,7 +176,7 @@ public class HttpRouter {
 //		}
 //		return null;
 	
-	public static Result getCookieStore(){
+	private static Result getCookieStore(){
 		HttpGet get = new HttpGet(EnumUtils.HOME);
 		Result result = new Result();
 		try {
@@ -207,7 +206,7 @@ public class HttpRouter {
 				}
 				EnumUtils.questionList = list;
 				EnumUtils.cookieStore = HttpManager.getCookieStore();
-				result.setResult(0, "OK");
+				result.setResult(0, csrf);
 				return result;
 			}else{
 				result.setResult(-1, "web server error!please check & restart !");
